@@ -1,5 +1,11 @@
 pypdf
-langchain
-chromadb # Vector storage
-pytest
+langchain-community
+langchain-core
+langchain-chroma
+langchain-huggingface
+chromadb
+sentence-transformers
+torch
+llama-cpp-python
 boto3
+pytest

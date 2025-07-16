@@ -1,7 +1,8 @@
 import argparse
 from langchain.vectorstores.chroma import Chroma
 from langchain.prompts import ChatPromptTemplate
-from langchain_community.llms.ollama import Ollama
+#from langchain_community.llms.ollama import Ollama
+from llama_cpp import Llama
 
 from get_embedding_function import get_embedding_function
 
@@ -16,6 +17,8 @@ Answer the question based only on the following context:
 
 Answer the question based on the above context: {question}
 """
+
+
 
 
 def main():
@@ -40,8 +43,14 @@ def query_rag(query_text: str):
     prompt = prompt_template.format(context=context_text, question=query_text)
     # print(prompt)
 
-    model = Ollama(model="hf.co/bartowski/Ministral-8B-Instruct-2410-GGUF:Q4_K_M")
-    response_text = model.invoke(prompt)
+    #model = Ollama(model="hf.co/bartowski/Ministral-8B-Instruct-2410-GGUF:Q4_K_M")
+    model = Llama(model_path="/home/adityasr7/llama.cpp/build/bin/llama-2-7b-chat.Q6_K.gguf",n_ctx=4096)
+    #response_text = model.invoke(prompt)
+    response_text = model(prompt,
+        max_tokens=200,   # or 512 if your context length allows
+        temperature=0.7,
+        top_p=0.9,
+        stop=["</s>"])
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
     formatted_response = f"Response: {response_text}\nSources: {sources}"
