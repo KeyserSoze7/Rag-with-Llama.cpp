@@ -1,6 +1,7 @@
 #  Local RAG with LLaMA.cpp
 
-This project is a modified fork of the original repository which is aimed at **local Retrieval-Augmented Generation (RAG)**,by designed to demonstrate **local RAG** using a **quantized GGUF model** (specifically, LLaMA 2 7B Instruct) — entirely offline and locally on your system.
+This project is a modified fork of the original repository which is aimed at **local Retrieval-Augmented Generation (RAG)**. 
+Along with all the benefits from original file, this is designed to demonstrate **local RAG** using a **quantized GGUF model** (specifically, LLaMA 2 7B Instruct) — entirely offline and locally on your system.
 
 ---
 
